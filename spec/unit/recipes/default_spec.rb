@@ -17,12 +17,19 @@ describe 'redis::default' do
       expect { chef_run }.to_not raise_error
     end
 
-    it 'updates the package repository' do
-      expect(chef_run).to run_execute('apt-get update')
+describe 'apt::default' do
+  let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04').converge(described_recipe) }
+
+#    it 'includes the apt recipe' do
+#      expect(chef_run).to include_recipe('apt::default')
+#    end
+
+    it 'includes the apt recipe' do
+      expect(chef_run).to include_recipe('build-essential::default')
     end
-    
+end    
     it 'installs the necessary packages' do
-	expect(chef_run).to install_package('build-essential')
+#	expect(chef_run).to install_package('build-essential')
 	expect(chef_run).to install_package('tcl8.5')
     end
 
@@ -42,7 +49,7 @@ describe 'redis::default' do
     end
 
     it 'installs the redis server' do
-	resource = chef_run.execute('make && make install')
+	resource = chef_run.execute('redis_build_and_install')
         expect(resource).to notify('execute[echo -n | ./install_server.sh]').to(:run).immediately
     end
 
