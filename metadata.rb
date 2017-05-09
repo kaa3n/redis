@@ -7,3 +7,4 @@ long_description 'Installs/Configures redis'
 version '0.1.0'
 
 depends 'apt', '~> 6.1.0'
+depends 'build-essential', '~> 8.0.2'

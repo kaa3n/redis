@@ -9,8 +9,8 @@
 #
 
 include_recipe "apt::default"
+include_recipe 'build-essential::default'
 
-package "build-essential"
 
 package "tcl8.5"
 
