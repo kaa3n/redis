@@ -15,13 +15,13 @@ package "build-essential"
 package "tcl8.5"
 
 # download http://download.redis.io/releases/redis-2.8.9.tar.gz
-remote_file "~/redis-2.8.9.tar.gz" do
+remote_file "/tmp/redis-2.8.9.tar.gz" do
   source "http://download.redis.io/releases/redis-2.8.9.tar.gz"
-  notifies :run, "execute[tar xzf redis-2.8.9.tar.gz]", :immediately
+  notifies :run, "execute[tar xzf /tmp/redis-2.8.9.tar.gz]", :immediately
 end
 
 # unzip the archive
-execute "tar xzf redis-2.8.9.tar.gz" do
+execute "tar xzf /tmp/redis-2.8.9.tar.gz" do
   cwd "/tmp"
   action :nothing
   notifies :run, "execute[make && make install]", :immediately
