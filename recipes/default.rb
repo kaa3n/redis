@@ -8,7 +8,7 @@
 # https://www.digitalocean.com/community/tutorials/how-to-install-and-use-redis
 #
 
-execute "apt-get update"
+include_recipe "apt::default"
 
 package "build-essential"
 
