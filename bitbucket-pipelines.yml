@@ -12,3 +12,5 @@ pipelines:
           - ruby -c 
           - gem install test-kitchen
           - gem install kitchen-docker -v 2.3.0
+          - gem install chef -v 13.0.118
+          - chef exec rspec 
