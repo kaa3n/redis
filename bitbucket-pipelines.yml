@@ -11,3 +11,4 @@ pipelines:
         script: # Modify the commands below to build your repository.
           - ruby -c 
           - gem install test-kitchen
+          - gem install kitchen-docker -v 2.3.0
