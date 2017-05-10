@@ -3,11 +3,31 @@
 # Only use spaces to indent your .yml configuration.
 # -----
 # You can specify a custom docker image from Docker Hub as your build environment.
-image: ruby:2.4.0
+---
+driver:
+  name: docker
+  privileged: true
+  use_sudo: false
 
-pipelines:
-  default:
-    - step:
-        script: # Modify the commands below to build your repository.
-          - ruby -c 
-          - foodcritic
+provisioner:
+  name: chef_zero
+  # You may wish to disable always updating cookbooks in CI or     other testing environments.
+  # For example:
+  #   always_update_cookbooks: <%= !ENV['CI'] %>
+  always_update_cookbooks: true
+
+#verifier:
+#  name: inspec
+
+platforms:
+#  - name: centos-7.2
+#    driver_config:
+#      run_command: /usr/lib/systemd/systemd
+  - name: ubuntu-16.04
+    driver_config:
+      run_command: /bin/systemd
+suites:
+ - name: default
+   run_list:
+     - recipe[redis::default]
+   attributes:
