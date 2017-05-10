@@ -26,11 +26,12 @@ execute 'unzip_redis_archive' do
   command "tar xzf /tmp/redis-#{version_number}.tar.gz" 
   cwd "/tmp"
   action :nothing
-  notifies :run, "execute[make && make install]", :immediately
+  notifies :run, "execute[redis_build_and_install]", :immediately
 end
 
 # Configure the application: make and make install
-execute "make && make install" do
+execute "redis_build_and_install" do
+  command "make && make install" 
   cwd "/tmp/redis-#{version_number}"
   action :nothing
   notifies :run, "execute[echo -n | ./install_server.sh]", :immediately
