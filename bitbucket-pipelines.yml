@@ -10,7 +10,8 @@ pipelines:
     - step:
         script: # Modify the commands below to build your repository.
           - ruby -c 
-          - gem install test-kitchen
-          - gem install kitchen-docker -v 2.3.0
-          - gem install chef -v 13.0.118
-          - rspec 
+          - curl -s https://omnitruck.chef.io/install.sh | sudo bash -s -- -P chefdk
+          - echo 'eval "$(chef shell-init bash)"' >> ~/.bash_profile
+          - source ~/.bash_profile
+          - which chef
+          - which ruby
