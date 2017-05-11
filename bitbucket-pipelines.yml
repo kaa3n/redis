@@ -15,4 +15,4 @@ pipelines:
           - source ~/.bash_profile
           - which chef
           - which ruby
-          - chef exec rspec
+          - kitchen test
