@@ -14,3 +14,5 @@ pipelines:
           - echo 'eval "$(chef shell-init bash)"' >> ~/.bash_profile
           - source ~/.bash_profile
           - chef exec gem install kitchen-docker
+          - kitchen -v
+          - kitchen converge
