@@ -13,7 +13,4 @@ pipelines:
           - curl -s https://omnitruck.chef.io/install.sh | bash -s -- -P chefdk
           - echo 'eval "$(chef shell-init bash)"' >> ~/.bash_profile
           - source ~/.bash_profile
-          - yum -y install docker-ce
-          - systemctl enable docker
-          - systemctl start docker
-          - usermod -aG docker $USER
+          - chef exec gem install kitchen-docker
