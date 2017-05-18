@@ -34,11 +34,12 @@ execute "redis_build_and_install" do
   command "make && make install" 
   cwd "/tmp/redis-#{version_number}"
   action :nothing
-  notifies :run, "execute[echo -n | ./install_server.sh]", :immediately
+  notifies :run, "execute[install_server_redis]", :immediately
 end
 
 # Install the Server
-execute "echo -n | ./install_server.sh" do
+execute "install_server_redis" do
+  command "echo -n | ./install_server.sh" 
   cwd "/tmp/redis-#{version_number}/utils"
   action :nothing
 end
