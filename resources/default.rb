@@ -1,6 +1,8 @@
 
 actions :install
 
+default_action :install
+
 property :source, String
 property :version, String, name_property: true
 

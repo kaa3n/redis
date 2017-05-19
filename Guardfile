@@ -40,4 +40,5 @@ guard :rspec, cmd: "chef exec rspec" do
   watch(%r{^(recipes)/(.+)\.rb$}) { rspec.spec_dir }
   watch(%r{^(resources)/(.+)\.rb$}) { rspec.spec_dir }
   watch(%r{^(libraries)/(.+)\.rb$}) { rspec.spec_dir }
+  watch(%r{^(attributes)/(.+)\.rb$}) { rspec.spec_dir }
 end

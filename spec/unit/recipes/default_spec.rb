@@ -11,10 +11,11 @@ describe 'redis::default' do
     let(:chef_run) do
       runner = ChefSpec::ServerRunner.new(step_into: ['redis']) do |node,server|
         node.set['redis']['version'] = version
+      end
       runner.converge(described_recipe)
     end
 
-    let(:version) { '3.0.0' }
+    let(:version) { '2.8.9' }
 
     it 'converges successfully' do
       expect { chef_run }.to_not raise_error
@@ -37,8 +38,8 @@ end
     end
 
 
-    it 'Install the redis' do
-        expect(chef_run).to install_redis('version')
+    it 'Install redis' do
+        expect(chef_run).to install_redis(version)
     end
 
     it 'retrives the source code from remote location' do
